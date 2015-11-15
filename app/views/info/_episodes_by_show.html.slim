@@ -1,0 +1,17 @@
+- episodes_by_show = episodes.group_by(&:show)
+
+- if episodes_by_show.size > 0
+
+  .ui.styled.accordion
+    - episodes_by_show.sort_by {|show, _| show.name }.each do |show, episodes|
+      .title
+        i.dropdown.icon
+        = show.name
+
+      .content
+        ul
+          - episodes.sort_by {|e| e.title.gsub(/\d+/) {|i| i.rjust(50, '0') }}.each do |episode|
+            li = link_to episode.title, episodes_show_path(base64_guid: episode.base64_guid)
+
+- else
+  | No episodes

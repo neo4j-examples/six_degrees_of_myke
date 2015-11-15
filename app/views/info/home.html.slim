@@ -1,0 +1,54 @@
+.ui.main.container
+  h1 Six Degrees of Myke Hurley
+
+  /javascript:
+    var people_names = #{@people_names.to_json.html_safe};
+
+  form.ui.form
+    .field
+      label Person 1
+      select.ui.search.dropdown name="person1"
+        option value="" Select the first person
+        option selected="selected" Myke Hurley
+
+    .field
+      label Person 2
+      select.ui.search.dropdown name="person2"
+        option value="" Select the second person
+
+    .field
+      .ui.checkbox
+        input type="checkbox" name="only_author"
+        label Only authors (not simply mentioned in the episode description)
+
+  #result
+
+coffee:
+  person1_select = $('select[name=person1]')
+  person2_select = $('select[name=person2]')
+
+  select2_options =
+    ajax:
+      url: '/people_names.json'
+      data: (params) ->
+        query: params.term
+      processResults: (data, params) ->
+        results: data
+      cache: true
+
+  person1_select.select2 select2_options
+  person2_select.select2 select2_options
+
+  refresh_results = ->
+    value1 = $('select[name=person1]').val()
+    value2 = $('select[name=person2]').val()
+
+    if value1.length > 0 and value2.length > 0
+      $.get("/path_between/#{value1}/#{value2}.json?only_author=" + $('input[name=only_author]')[0].checked)
+        .done (result) ->
+          $('#result').html(result)
+        .fail ->
+          $('#result').html('There was an error with your query')
+
+  $('select').change refresh_results
+  $('input').change refresh_results

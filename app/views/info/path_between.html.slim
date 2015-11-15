@@ -1,0 +1,49 @@
+
+.ui.grid
+  - [@person1, @person2].each do |person|
+    .five.wide.column
+      = render partial: 'people/profile', locals: {person: person}
+
+  .six.wide.column
+    - if @path
+      - person = @path.shift
+
+      h2
+        i.user.icon
+        = link_to person.name, person_show_path(person)
+
+      - while @path.present?
+        - rel1 = @path.shift
+        - episode = @path.shift
+        - rel2 = @path.shift
+        - person = @path.shift
+
+        - case rel1.rel_type
+        - when :HAS_AUTHOR
+          h3 = 'Authored'
+        - when :MENTIONED_IN
+          h3 = 'Mentioned in'
+
+        p
+          strong Show: 
+          = episode.show.name
+        p
+          strong Episode title: 
+          = link_to episode.title, episodes_show_path(base64_guid: episode.base64_guid)
+
+        - case rel2.rel_type
+        - when :HAS_AUTHOR
+          h3 = 'Authored by'
+        - when :MENTIONED_IN
+          h3 = 'Mentioned'
+
+        h2
+          i.user.icon
+          = link_to person.name, person_show_path(person)
+
+    - else
+      p No path within six hops found between #{@person1.name} and #{@person2.name}
+
+coffee:
+  $('.ui.accordion').accordion()
+

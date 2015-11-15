@@ -1,0 +1,11 @@
+h1 = person.name
+
+h2 Authored:
+
+= render partial: '/info/episodes_by_show', locals: {episodes: person.authored_episodes.with_associations(:show)}
+
+h2 Mentioned in:
+
+= render partial: '/info/episodes_by_show', locals: {episodes: person.mentioned_in.with_associations(:show)}
+
+
