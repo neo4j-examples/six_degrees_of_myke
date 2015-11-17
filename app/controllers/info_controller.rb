@@ -4,7 +4,7 @@ class InfoController < ApplicationController
 
   def people_names
     if params[:query].present?
-      names = Person.as(:person).order(:name).where('lower(person.name) CONTAINS ?', params[:query].downcase).pluck(:name)
+      names = Person.as(:person).order(:name).where('person.lower_name CONTAINS ?', params[:query].downcase).pluck(:name)
 
       render json: names.map { |name| {id: name, text: name} }
     else
