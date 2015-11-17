@@ -8,6 +8,8 @@ server '162.243.50.116', user: 'rails', roles: %w{app db}
 
 set :rails_env, :production
 
+set :linked_files, fetch(:linked_files, []).push('.env.production')
+
 set :rbenv_type, :user
 set :rbenv_ruby, '2.2.3'
 

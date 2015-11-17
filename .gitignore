@@ -11,3 +11,5 @@
 /log/*
 !/log/.keep
 /tmp
+
+config/neo4j.yml
