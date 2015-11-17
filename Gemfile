@@ -46,6 +46,7 @@ group :development do
   gem 'capistrano3-unicorn'
   gem 'capistrano-rbenv'
   gem 'capistrano-bundler'
+  gem 'capistrano-rails'
 end
 
 group :test do
@@ -53,4 +54,4 @@ group :test do
 end
 
 
-gem 'neo4j', '~> 6.0.0.alpha'
+gem 'neo4j', '~> 6.0.0.rc'
