@@ -8,6 +8,10 @@ server '162.243.50.116', user: 'rails', roles: %w{app db}
 
 set :rails_env, :production
 
+set :rbenv_type, :user
+set :rbenv_ruby, '2.2.3'
+
+
 
 # Configuration
 # =============

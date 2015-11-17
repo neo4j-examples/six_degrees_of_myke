@@ -42,6 +42,7 @@ group :development do
   gem 'web-console', '~> 2.0'
   gem 'capistrano-rails'
   gem 'capistrano3-unicorn'
+  gem 'capistrano-rbenv'
 end
 
 group :test do
