@@ -6,6 +6,7 @@
 server '162.243.50.116', user: 'rails', roles: %w{app db}
 
 
+set :rails_env, :production
 
 
 # Configuration
