@@ -1,4 +1,13 @@
 GIT
+  remote: git://github.com/bkeepers/dotenv.git
+  revision: 299e497ba41395fc80b8b82c4e0cf2f7a503214a
+  specs:
+    dotenv (2.0.2)
+    dotenv-rails (2.0.2)
+      dotenv (= 2.0.2)
+      railties (~> 4.0)
+
+GIT
   remote: git://github.com/doabit/semantic-ui-sass.git
   revision: 0c6474f98bfdd82b764b8289df0108033f01b7f7
   specs:
@@ -256,10 +265,12 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
+  capistrano-bundler
   capistrano-rails
   capistrano-rbenv
   capistrano3-unicorn
   coffee-rails (~> 4.1.0)
+  dotenv-rails!
   jbuilder (~> 2.0)
   jquery-rails
   neo4j (~> 6.0.0.alpha)
