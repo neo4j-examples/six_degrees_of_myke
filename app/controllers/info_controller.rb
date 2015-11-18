@@ -11,8 +11,8 @@ class InfoController < ApplicationController
   end
 
   def path_between
-    @person1 = Person.find(params[:name1])
-    @person2 = Person.find(params[:name2])
+    @person1 = Person.all.find(params[:name1])
+    @person2 = Person.all.find(params[:name2])
 
     relationship_types = if params[:only_author] == 'true'
                            'HAS_AUTHOR'

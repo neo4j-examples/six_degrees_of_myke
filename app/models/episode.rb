@@ -15,7 +15,11 @@ class Episode
   has_many :in, :people_mentioned, type: :MENTIONED_IN, model_class: :Person
 
   def base64_guid
-    Base64.encode64(self.guid)
+    self.class.base64_guid(self.guid)
+  end
+
+  def self.base64_guid(guid)
+    Base64.encode64(guid)
   end
 
   def self.from_base64_guid(encoded_guid)

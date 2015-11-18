@@ -15,4 +15,4 @@
 #= require turbolinks
 #= require semantic-ui
 #= require liquidmetal
-#= require jquery.flexselect
+#= require select2

@@ -1,17 +1,18 @@
-- episodes_by_show = episodes.group_by(&:show)
+- rows = episodes.show(:show).pluck('episode.guid, episode.title, show.name')
+- rows_by_show_title = rows.group_by(&:last)
 
-- if episodes_by_show.size > 0
+- if rows_by_show_title.size > 0
 
   .ui.styled.accordion
-    - episodes_by_show.sort_by {|show, _| show.name }.each do |show, episodes|
+    - rows_by_show_title.sort_by(&:last).each do |show_name, rows|
       .title
         i.dropdown.icon
-        = show.name
+        = show_name
 
       .content
         ul
-          - episodes.sort_by {|e| e.title.gsub(/\d+/) {|i| i.rjust(50, '0') }}.each do |episode|
-            li = link_to episode.title, episodes_show_path(base64_guid: episode.base64_guid)
+          - rows.sort_by {|_, title, _| title.gsub(/\d+/) {|i| i.rjust(50, '0') }}.each do |guid, title, _|
+            li = link_to title, episodes_show_path(base64_guid: Episode.base64_guid(guid))
 
 - else
   | No episodes

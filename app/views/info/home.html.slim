@@ -21,6 +21,8 @@
         input type="checkbox" name="only_author"
         label Only authors (not simply mentioned in the episode description)
 
+  .ui.divider
+
   #result
 
 coffee:
@@ -30,6 +32,7 @@ coffee:
   select2_options =
     ajax:
       url: '/people_names.json'
+      delay: 150
       data: (params) ->
         query: params.term
       processResults: (data, params) ->
@@ -40,6 +43,8 @@ coffee:
   person2_select.select2 select2_options
 
   refresh_results = ->
+    $('#result').html('<div class="ui active centered inline large loader"></div>')
+
     value1 = $('select[name=person1]').val()
     value2 = $('select[name=person2]').val()
 
