@@ -32,6 +32,10 @@ gem 'dotenv-rails', :github => "bkeepers/dotenv", :require => 'dotenv/rails-now'
 
 gem 'unicorn-rails'
 
+gem 'newrelic_rpm'
+gem 'rollbar', '~> 2.4.0'
+gem 'oj', '~> 2.12.14'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
