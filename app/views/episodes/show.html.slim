@@ -1,32 +1,33 @@
-h1 Episode title: #{@episode.title}
+.ui.text.container
+  h1 Episode title: #{@episode.title}
 
-h2 From show: #{@episode.show.name}
+  h2 From show: #{@episode.show.name}
 
-h2 Description:
+  h2 Description:
 
-= @episode.html_safe_description
+  = @episode.html_safe_description
 
-h2 iTunes author string:
+  h2 iTunes author string:
 
-= @episode.itunes_author
+  = @episode.itunes_author
 
-h2 Link:
+  h2 Link:
 
-= link_to @episode.link, @episode.link
+  = link_to @episode.link, @episode.link
 
-h2 Authors:
+  h2 Authors:
 
-.ui.list
-- @episode.authors.each do |person|
-  .item
-    i.user.icon
-    = person.name
+  .ui.list
+  - @episode.authors.each do |person|
+    .item
+      i.user.icon
+      = person.name
 
-h2 Mentioned:
+  h2 Mentioned:
 
-.ui.list
-- @episode.people_mentioned.each do |person|
-  .item
-    i.user.icon
-    = person.name
+  .ui.list
+  - @episode.people_mentioned.each do |person|
+    .item
+      i.user.icon
+      = person.name
 

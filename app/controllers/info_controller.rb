@@ -19,12 +19,20 @@ class InfoController < ApplicationController
                          else
                            'HAS_AUTHOR|MENTIONED_IN'
                          end
-    nodes, rels = @person1.query_as(:person1)
+    @query = @person1.query_as(:person1)
       .match_nodes(person2: @person2)
       .match("path=shortestPath((person1)-[:#{relationship_types}*1..12]-(person2:Person))")
-      .pluck('nodes(path), rels(path)')[0]
+      .return('nodes(path) AS nodes, rels(path) AS rels')
 
-    @path = nodes.zip(rels).flatten.compact if nodes && rels
+    result = nil
+    @time_taken = Benchmark.realtime do
+      result = @query.dup.to_a[0]
+    end
+    if result
+      nodes, rels = [result.nodes, result.rels]
+
+      @path = nodes.zip(rels).flatten.compact
+    end
 
     render layout: false
   end

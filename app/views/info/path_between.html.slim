@@ -1,4 +1,10 @@
 
+p Neo4j query used:
+pre
+  = @query.to_cypher(pretty: true).gsub(/\033\[[0-9;]*m/, '')
+
+p Time taken: #{(@time_taken.to_f * 1000).round(1)}ms
+
 .ui.grid
   - [@person1, @person2].each do |person|
     .five.wide.column
