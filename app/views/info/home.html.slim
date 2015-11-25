@@ -31,14 +31,13 @@
           select.ui.search.dropdown name="person2"
             option value="" Select the second person
 
-    .row
-      .field
-        .ui.checkbox
-          input type="checkbox" name="only_author"
-          label Only authors (not simply mentioned in the episode description)
+    .centered.row
+      .ui.checkbox
+        input type="checkbox" name="only_author"
+        label Only authors (not simply mentioned in the episode description)
 
     .row
-      #result
+      #result style="width: 100%"
 
 
 coffee:
