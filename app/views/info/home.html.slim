@@ -1,36 +1,45 @@
-.ui.main.container
-  h1 Six Degrees of Myke Hurley (a Podcast network query application)
+.ui.inverted.vertical.masthead.center.aligned.segment
+  .ui.text.container
+    h1.ui.inverted.header Six Degrees of Myke Hurley
 
-  h2
-    | Using the <a href="http://neo4j.com/">Neo4j Graph Database</a> (<a href="https://github.com/neo4j-examples/six_degrees_of_myke">Source Code</a>)
+    h3 A Podcast network query application using the <a href="http://neo4j.com/">Neo4j Graph Database</a> (<a href="https://github.com/neo4j-examples/six_degrees_of_myke">Source Code</a>)
 
-  h3 Inspired by <a href="http://www.relay.fm/cortex/15">Cortex Podcast Episode #15</a>
+    h4
+      | Inspired by <a href="http://www.relay.fm/cortex/15">Cortex Podcast Episode #15</a>
+      |  / 
+      | Technical details and caveats on <a href="https://www.reddit.com/r/cortexpodcast/comments/3pcbiy/six_degrees_of_separation/cx6px4u">Reddit</a>
 
-  h3 Technical details and caveats on <a href="https://www.reddit.com/r/cortexpodcast/comments/3pcbiy/six_degrees_of_separation/cx6px4u">Reddit</a>
+    /javascript:
+      var people_names = #{@people_names.to_json.html_safe};
 
-  /javascript:
-    var people_names = #{@people_names.to_json.html_safe};
 
-  form.ui.form
-    .field
-      label Person 1
-      select.ui.search.dropdown name="person1"
-        option value="" Select the first person
-        option selected="selected" Myke Hurley
+.ui.vertical.stripe.segment
+  .ui.middle.aligned.stackable.grid.container
+    .row
+      h1.ui.centered.header style="width: 100%" Find the degrees of separation between:
 
-    .field
-      label Person 2
-      select.ui.search.dropdown name="person2"
-        option value="" Select the second person
+    .row
+      .ui.divided.grid style="width: 100%"
+        .eight.wide.column style="text-align: center"
+          select.ui.search.dropdown name="person1"
+            option value="" Select the first person
+            option selected="selected" Myke Hurley
 
-    .field
-      .ui.checkbox
-        input type="checkbox" name="only_author"
-        label Only authors (not simply mentioned in the episode description)
+        .ui.vertical.divider and
 
-  .ui.divider
+        .eight.wide.column style="text-align: center"
+          select.ui.search.dropdown name="person2"
+            option value="" Select the second person
 
-  #result
+    .row
+      .field
+        .ui.checkbox
+          input type="checkbox" name="only_author"
+          label Only authors (not simply mentioned in the episode description)
+
+    .row
+      #result
+
 
 coffee:
   person1_select = $('select[name=person1]')
