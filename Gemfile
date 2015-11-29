@@ -31,6 +31,7 @@ gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
 gem 'dotenv-rails', :github => "bkeepers/dotenv", :require => 'dotenv/rails-now'
 
 gem 'unicorn-rails'
+gem 'unicorn-worker-killer'
 
 gem 'newrelic_rpm'
 gem 'rollbar', '~> 2.4.0'
